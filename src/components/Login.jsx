@@ -13,11 +13,7 @@ export default function Login({ onLogin, onSwitchToRegister }) {
       const { data } = await login({ loginOrEmail, password });
       onLogin(data.token);
     } catch (err) {
-      if (err.response?.status === 401 || err.response?.status === 403) {
-        setError('Email ou senha incorretos. Verifique suas credenciais.');
-      } else if (err.response?.status === 404) {
-        setError('Usuário não encontrado. Verifique o email digitado.');
-      } else if (err.code === 'ERR_NETWORK') {
+      if (err.code === 'ERR_NETWORK') {
         setError('Erro de conexão. Verifique se o backend está rodando.');
       } else {
         setError(err.response?.data?.message || 'Erro ao fazer login. Tente novamente.');
