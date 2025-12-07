@@ -87,14 +87,13 @@ React-Movies-DevOps/
 ## 🎯 Funcionalidades
 
 ### ✅ Tela de Login
-- Formulário com usuário e senha
+- Formulário com email e senha
 - Validação de campos obrigatórios
-- Mensagens de erro claras
 - Link para criação de conta
 
 ### ✅ Criação de Conta
+- Campos: Nome, Email, Telefone e Senha
 - Validação completa de senha em tempo real
-- Mensagens de erro específicas para cada critério não atendido
 - Feedback visual de sucesso
 - Redirecionamento automático após criação
 
@@ -130,10 +129,21 @@ Os arquivos serão gerados na pasta `dist/`.
 A URL base da API está configurada em `src/services/api.js`:
 
 ```javascript
-baseURL: 'http://localhost:8080/api'
+baseURL: 'http://localhost:8080'
 ```
 
 Altere conforme necessário para apontar para seu backend.
+
+## 🧪 Dados de Teste
+
+O backend já vem com dados pré-cadastrados (via `data.sql`):
+
+**Usuário de Teste:**
+- Email: `joao@email.com`
+- Senha: `Teste@123`
+
+**Filmes Disponíveis:**
+- Matrix, O Senhor dos Anéis, Interestelar, Parasita, Vingadores: Ultimato, Coringa, Inception, Pulp Fiction
 
 ## 📝 Endpoints Utilizados
 
@@ -144,17 +154,6 @@ Altere conforme necessário para apontar para seu backend.
 ## 👨‍💻 Desenvolvimento
 
 O projeto utiliza Vite para hot reload durante o desenvolvimento. Qualquer alteração nos arquivos será refletida automaticamente no navegador.
-
-## ✨ Critérios de Aceite Atendidos
-
-- ✅ Aplicação roda sem erros de compilação
-- ✅ Tela de login e criação de conta implementadas
-- ✅ Validação completa da senha com todas as regras
-- ✅ Mensagens de erro claras e específicas
-- ✅ Consumo da API de catálogo de filmes
-- ✅ Exibição de todos os atributos dos filmes
-- ✅ Player simples funcionando com alert
-- ✅ README.md completo com instruções
 
 ## 📄 Licença
 
