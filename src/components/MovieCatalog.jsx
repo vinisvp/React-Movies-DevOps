@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { getMovies } from '../services/api';
+import MoviePage from './MoviePage';
 
 export default function MovieCatalog({ token, onLogout }) {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [selectedMovie, setSelectedMovie] = useState(null);
 
   useEffect(() => {
     loadMovies();
@@ -21,12 +23,11 @@ export default function MovieCatalog({ token, onLogout }) {
     }
   };
 
-  const playMovie = (movie) => {
-    alert(`Reproduzindo: ${movie.title}`);
-  };
+
 
   if (loading) return <div style={styles.loading}>Carregando...</div>;
   if (error) return <div style={styles.error}>{error}</div>;
+  if (selectedMovie) return <MoviePage movie={selectedMovie} onBack={() => setSelectedMovie(null)} />;
 
   return (
     <div style={styles.container}>
@@ -36,7 +37,13 @@ export default function MovieCatalog({ token, onLogout }) {
       </header>
       <div style={styles.grid}>
         {movies.map((movie) => (
-          <div key={movie.id} style={styles.card}>
+          <div 
+            key={movie.id} 
+            style={styles.card}
+            onClick={() => setSelectedMovie(movie)}
+            onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+            onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+          >
             {movie.posters?.[0] && <img src={movie.posters[0]} alt={movie.title} style={styles.poster} />}
             <h3 style={styles.title}>{movie.title}</h3>
             <div style={styles.info}>
@@ -46,9 +53,6 @@ export default function MovieCatalog({ token, onLogout }) {
               {movie.categories?.length > 0 && <p><strong>Categorias:</strong> {movie.categories.map(c => c.name).join(', ')}</p>}
             </div>
             {movie.synopsis && <p style={styles.description}>{movie.synopsis}</p>}
-            <button onClick={() => playMovie(movie)} style={styles.playBtn}>
-              ▶ Reproduzir
-            </button>
           </div>
         ))}
       </div>
@@ -116,17 +120,7 @@ const styles = {
     marginBottom: '15px',
     lineHeight: '1.5'
   },
-  playBtn: {
-    width: '100%',
-    padding: '12px',
-    background: '#e50914',
-    color: 'white',
-    border: 'none',
-    borderRadius: '5px',
-    fontSize: '16px',
-    cursor: 'pointer',
-    fontWeight: 'bold'
-  },
+
   loading: {
     display: 'flex',
     justifyContent: 'center',
