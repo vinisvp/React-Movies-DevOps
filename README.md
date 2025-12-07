@@ -23,7 +23,7 @@ Aplicação web que permite aos usuários:
 
 - Node.js (versão 16 ou superior)
 - npm ou yarn
-- Backend Spring Boot rodando na porta 8080
+- [Backend Spring Boot](https://github.com/vinisvp/Spring-Movies-DevOps.git) rodando na porta 8080
 
 ### Passos
 
@@ -46,7 +46,7 @@ npm install
 npm run dev
 ```
 
-3. Acesse a aplicação em: `http://localhost:3000`
+3. Acesse a aplicação em: `http://localhost:5173`
 
 ## 🔐 Validação de Senha
 
